@@ -9,7 +9,7 @@ import CartButtons from './CartButtons'
 import { useUserContext } from '../context/user_context'
 
 const Sidebar = () => {
-  const isOpen = true;
+  const isOpen = false;
   const navLinks = links.map(({ id, text, url }) => {
     return (
       <li key={id}>
