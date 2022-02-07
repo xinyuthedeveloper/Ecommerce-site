@@ -17,7 +17,7 @@ const Stars = ({ stars, reviews }) => {
       </span>
     );
   });
-  console.log(starsList);
+
   return (
     <Wrapper>
       <div className="stars">{starsList}</div>
