@@ -6,7 +6,7 @@ import { FaCheck } from "react-icons/fa";
 
 const Filters = () => {
   const {
-    filters: { text, category, color, min_price, max_price, shipping },
+    filters: { text, category, company, color, min_price, max_price, shipping },
     updateFilters,
     clearFilters,
     all_products,
@@ -16,21 +16,66 @@ const Filters = () => {
   const companies = getUniqueValues(all_products, "company");
   const colors = getUniqueValues(all_products, "colors");
 
-  console.log(colors);
-
   return (
     <Wrapper>
       <div className="content">
         <form onSubmit={(e) => e.preventDefault()}>
           {/* search input */}
-          <input
-            type="text"
-            name="text"
-            placeholder="search"
-            className="search-input"
-            value={text}
-            onChange={updateFilters}
-          />
+          <div className="form-control">
+            <input
+              type="text"
+              name="text"
+              placeholder="search"
+              className="search-input"
+              value={text}
+              onChange={updateFilters}
+            />
+          </div>
+          {/* end search input */}
+          {/* categories */}
+          <div className="form-control">
+            <h5>category</h5>
+            <div>
+              {categories.map((c, index) => {
+                return (
+                  <button
+                    type="button"
+                    key={index}
+                    name="category"
+                    onClick={updateFilters}
+                    className={`${
+                      category === c.toLowerCase() ? "active" : null
+                    }`}
+                  >
+                    {c}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+          {/* end of categories */}
+          {/* companies */}
+          <div className="form-control">
+            <h5>Brand</h5>
+            <div>
+              <select
+                name="company"
+                id="company"
+                value={company}
+                onChange={updateFilters}
+                className="company"
+              >
+                {companies.map((c, index) => {
+                  return (
+                    <option key={index} value={c}>
+                      {c}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+          </div>
+          {/* end of companies */}
         </form>
       </div>
     </Wrapper>
